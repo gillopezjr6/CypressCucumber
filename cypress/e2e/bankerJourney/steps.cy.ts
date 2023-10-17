@@ -50,6 +50,10 @@ When(/^the user clicks on the Add Customer button$/, () => {
 	addCustomer.clickAddCustomerBtn()
 })
 
+When(/^the customers tab is clicked$/, () => {
+    bankManager.clickCustomersBtn()
+})
+
 Then(/^the customer table should have first name (.+)$/, (firstName: string) => {
 	cy.on('window:alert', function(alertText) {
         expect(alertText).eq('Customer added successfully with customer id :6')
@@ -66,7 +70,10 @@ Then(/^the customer table should have zip code (.+)$/, (postalCode: string) => {
     customerTable.verifyZipCode(postalCode)
 })
 
-
 Then(/^the delete button is clicked for the newly added row$/, () => {
     customerTable.clickDeleteBtn()
+});
+
+Then(/^the customers table should have (.+) rows$/, (rowNum: number) => {
+	customerTable.firstRowLength(rowNum)
 });

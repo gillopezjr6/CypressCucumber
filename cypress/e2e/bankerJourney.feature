@@ -23,11 +23,17 @@ Feature: Banker Journey
         And the customer table should have last name <lastName>
         And the customer table should have zip code <postalCode>
         And the delete button is clicked for the newly added row
+        And the customers table should have <rowNum> rows
 
         Examples:
-            | firstName | lastName | postalCode |
-            | Gilbert   | Lopez    | 48732      |
+            | firstName | lastName | postalCode | rowNum |
+            | Gilbert   | Lopez    | 48732      | 5      |
 
+    # Scenario: Assert table elements
+    #     Given the user is on the XYZ bank application
+    #     And the Bank Manager login button is clicked
+    #     When the customers tab is clicked
+    #     Then
 
 
 
