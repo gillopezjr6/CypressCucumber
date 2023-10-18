@@ -54,19 +54,13 @@ When(/^the customers tab is clicked$/, () => {
     bankManager.clickCustomersBtn()
 })
 
-Then(/^the customer table should have first name (.+)$/, (firstName: string) => {
+Then(/^the customer table should have (.+), (.+), and (.+)$/, (firstName: string, lastName: string, postalCode: string) => {
 	cy.on('window:alert', function(alertText) {
         expect(alertText).eq('Customer added successfully with customer id :6')
     })  
     bankManager.clickCustomersBtn()
     customerTable.verifyfirstName(firstName)
-})
-
-Then(/^the customer table should have last name (.+)$/, (lastName: string) => {
     customerTable.verifyLastName(lastName)
-})
-
-Then(/^the customer table should have zip code (.+)$/, (postalCode: string) => {
     customerTable.verifyZipCode(postalCode)
 })
 
@@ -77,3 +71,13 @@ Then(/^the delete button is clicked for the newly added row$/, () => {
 Then(/^the customers table should have (.+) rows$/, (rowNum: number) => {
 	customerTable.firstRowLength(rowNum)
 });
+
+
+Then(/^the customers table should not have (.+), (.+), or (.+)$/, (firstName: string, lastName: string, postalCode: string) => {
+	customerTable.returnTableData(firstName, lastName, postalCode)
+});
+
+Then(/^we assert the first row has (.+), (.+), (.+), and (.+)$/, (firstName: string, lastName: string, postalCode: string, acctNumber: number) => {
+	customerTable.returnRowData(firstName, lastName, postalCode, acctNumber)
+});
+

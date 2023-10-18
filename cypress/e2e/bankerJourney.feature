@@ -19,21 +19,25 @@ Feature: Banker Journey
         And the user chooses the option to Add Customer
         When the user types in <firstName>, <lastName>, and <postalCode>
         And the user clicks on the Add Customer button
-        Then the customer table should have first name <firstName>
-        And the customer table should have last name <lastName>
-        And the customer table should have zip code <postalCode>
+        Then the customer table should have <firstName>, <lastName>, and <postalCode>
         And the delete button is clicked for the newly added row
-        And the customers table should have <rowNum> rows
+        And the customers table should not have <firstName>, <lastName>, or <postalCode>
 
         Examples:
-            | firstName | lastName | postalCode | rowNum |
-            | Gilbert   | Lopez    | 48732      | 5      |
+            | firstName | lastName | postalCode |
+            | Gilbert   | Lopez    | 48732      |
 
-    # Scenario: Assert table elements
-    #     Given the user is on the XYZ bank application
-    #     And the Bank Manager login button is clicked
-    #     When the customers tab is clicked
-    #     Then
+    Scenario Outline: Assert table elements
+        Given the user is on the XYZ bank application
+        And the Bank Manager login button is clicked
+        When the customers tab is clicked
+        Then the customers table should have <rowNum> rows
+        And we assert the first row has <firstName>, <lastName>, <postalCode>, and <acctNumber>
+
+        Examples:
+            | firstName | lastName | postalCode | acctNumber     | rowNum |
+            | Hermoine  | Granger  | E859AB     | 1001 1002 1003 | 5      |
+
 
 
 
